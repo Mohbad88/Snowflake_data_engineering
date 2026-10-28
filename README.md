@@ -3,10 +3,6 @@
 Projet d’apprentissage qui transforme des fichiers CSV de réservations, d’hôtes et d’annonces avec Snowflake et dbt. Les modèles suivent une architecture en couches **Bronze → Silver → Gold**; dbt gère également des snapshots pour historiser les changements.
 
 
-## Architecture
-
-![Schéma de l’architecture](docs/architecture.png)
-
 1. Les CSV sont chargés dans les tables de staging Snowflake.
 2. Les modèles Bronze reprennent les données sources.
 3. Les modèles Silver nettoient et enrichissent les données.
