@@ -17,6 +17,8 @@ Le chargement des fichiers est manuel. Le projet fournit un stage interne Snowfl
 ├── data/
 │   ├── README.md
 │   └── raw/                         # CSV d’origine
+├── scripts/validate_data.py          # Vérification des fichiers CSV
+├── tests/test_validate_data.py       # Tests du vérificateur
 ├── dbt/                             # Projet dbt
 │   ├── models/
 │   │   ├── sources/
@@ -89,6 +91,15 @@ uv run --project . dbt build --project-dir .\dbt --profiles-dir "$env:USERPROFIL
 | `data/raw/listings.csv` | Annonces | 500 |
 
 Le détail des colonnes et des noms de tables se trouve dans [`data/README.md`](data/README.md).
+
+Pour contrôler les en-têtes et le nombre de colonnes des fichiers CSV avant leur chargement dans Snowflake :
+
+```powershell
+uv run --project . python .\scripts\validate_data.py
+uv run --project . python -m unittest discover -s tests
+```
+
+Le script lit `data/raw/` par défaut. Un autre répertoire peut être vérifié avec `--data-dir`.
 
 ## Identifiants et sécurité
 
